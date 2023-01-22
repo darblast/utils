@@ -1,4 +1,11 @@
 /**
+ * @returns The global object.
+ */
+export function getGlobal(): Window | null {
+  return Function('return this')();
+}
+
+/**
  * Compares two numbers with a tolerance.
  *
  * @param a  The first number.

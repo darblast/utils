@@ -15,6 +15,7 @@
     "strictPropertyInitialization": true,
     "useUnknownInCatchVariables": true,
     "module": "ES6",
+    "moduleResolution": "node",
     "declaration": true,
     "outDir": "dist",
     "lib": ["ES6", "DOM"],

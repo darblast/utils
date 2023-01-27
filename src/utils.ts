@@ -6,6 +6,46 @@ export function getGlobal(): Window | null {
 }
 
 /**
+ * Applies one or more mixins to a class using the "Alternative pattern" described in
+ * https://www.typescriptlang.org/docs/handbook/mixins.html#alternative-pattern.
+ *
+ * Example:
+ *
+ * ```ts
+ * import { applyMixins } from '@darblast/utils';
+ *
+ * class JumperMixin {
+ *   public jump(): void {
+ *     // ...
+ *   }
+ * }
+ *
+ * class Player {}
+ * interface Player extends JumperMixin {}
+ *
+ * applyMixins(Player, JumperMixin);
+ *
+ * const player = new Player();
+ * player.jump();
+ * ```
+ *
+ * @param derivedCtor The constructor of the main class.
+ * @param constructors The constructors of the mixin classes.
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function applyMixins(derivedCtor: Function, ...constructors: Function[]) {
+  constructors.forEach(baseCtor => {
+    Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+      Object.defineProperty(
+        derivedCtor.prototype,
+        name,
+        Object.getOwnPropertyDescriptor(baseCtor.prototype, name) || Object.create(null)
+      );
+    });
+  });
+}
+
+/**
  * Compares two numbers with a tolerance.
  *
  * @param a  The first number.
@@ -39,15 +79,14 @@ export function mod(a: number, b: number): number {
  * It is assumed that x is a positive integer.
  */
 export function npo2(x: number): number {
-  if (x <= 0) {
-    return 1;
-  }
-  let y = 1;
-  while (x) {
-    x >>>= 1;
-    y <<= 1;
-  }
-  return y;
+  x = ~~x - 1;
+  x |= x >>> 1;
+  x |= x >>> 2;
+  x |= x >>> 4;
+  x |= x >>> 8;
+  x |= x >>> 16;
+  x |= x >>> 32;
+  return ++x;
 }
 
 /**

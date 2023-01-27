@@ -1,6 +1,6 @@
 {
   "name": "@darblast/utils",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "",
   "type": "module",
   "main": "dist/utils.js",
@@ -11,8 +11,10 @@
     "eslint": "npx eslint .",
     "prettier": "npx prettier .",
     "build": "tsc -p tsconfig.json",
+    "mocha": "npx mocha",
     "test": "tsc -p tsconfig.json && npx mocha",
-    "typedoc": "npx typedoc src/*"
+    "typedoc": "npx typedoc src/*",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",

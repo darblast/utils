@@ -17,6 +17,7 @@
   },
   "plugins": ["@typescript-eslint", "mocha"],
   "rules": {
+    "@typescript-eslint/no-non-null-assertion": "off",
     "mocha/no-skipped-tests": "error",
     "mocha/no-exclusive-tests": "error"
   },

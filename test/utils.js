@@ -3,6 +3,30 @@ import { expect } from 'chai';
 import * as Utilities from '../dist/utils.js';
 
 describe('Utilities', function () {
+  it('next power of two', function () {
+    expect(Utilities.npo2(0)).to.equal(0);
+    expect(Utilities.npo2(1)).to.equal(1);
+    expect(Utilities.npo2(2)).to.equal(2);
+    expect(Utilities.npo2(3)).to.equal(4);
+    expect(Utilities.npo2(4)).to.equal(4);
+    expect(Utilities.npo2(5)).to.equal(8);
+    expect(Utilities.npo2(6)).to.equal(8);
+    expect(Utilities.npo2(7)).to.equal(8);
+    expect(Utilities.npo2(8)).to.equal(8);
+    expect(Utilities.npo2(9)).to.equal(16);
+    expect(Utilities.npo2(10)).to.equal(16);
+    expect(Utilities.npo2(11)).to.equal(16);
+    expect(Utilities.npo2(12)).to.equal(16);
+    expect(Utilities.npo2(13)).to.equal(16);
+    expect(Utilities.npo2(14)).to.equal(16);
+    expect(Utilities.npo2(15)).to.equal(16);
+    expect(Utilities.npo2(16)).to.equal(16);
+    expect(Utilities.npo2(17)).to.equal(32);
+    expect(Utilities.npo2(18)).to.equal(32);
+    expect(Utilities.npo2(19)).to.equal(32);
+    expect(Utilities.npo2(20)).to.equal(32);
+  });
+
   describe('range', function () {
     it('returns an empty array', function () {
       expect(Utilities.range(0)).to.eql([]);

@@ -3,6 +3,13 @@ import { expect } from 'chai';
 import * as Utilities from '../dist/utils.js';
 
 describe('Utilities', function () {
+  it('sleep', async function () {
+    const t0 = Date.now();
+    await Utilities.sleep(123);
+    const t1 = Date.now();
+    expect(t1 - t0).to.be.at.least(123);
+  });
+
   it('next power of two', function () {
     expect(Utilities.npo2(0)).to.equal(0);
     expect(Utilities.npo2(1)).to.equal(1);

@@ -58,6 +58,18 @@ export function almostEquals(a: number, b: number, e: number): boolean {
 }
 
 /**
+ * Suspends the execution for some amount of time.
+ * 
+ * The implementation simply promisifies
+ * {@link https://developer.mozilla.org/en-US/docs/Web/API/setTimeout | setTimeout}.
+ * 
+ * @param delay Delay in milliseconds.
+ */
+export function sleep(delay: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, delay));
+}
+
+/**
  * Calculates a "wrap around" version of the modulus.
  *
  * The formula is:
